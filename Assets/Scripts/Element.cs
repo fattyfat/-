@@ -49,7 +49,17 @@ public class Element : MonoBehaviour {
         // It's not a mine
         else
         {
-            // ToDo: do stuff..
+            // show adjacent mine number
+            int x = (int)transform.position.x;
+            int y = (int)transform.position.y;
+            loadTexture(Grid.adjacentMines(x, y));
+
+            // uncover area without mines
+            Grid.FFuncover(x, y, new bool[Grid.w, Grid.h]);
+
+            if (Grid.isFinished())
+                print("you win");
         }
     }
+
 }
